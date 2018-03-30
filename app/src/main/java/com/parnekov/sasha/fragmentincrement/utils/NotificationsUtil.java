@@ -12,6 +12,8 @@ import android.support.v4.app.NotificationCompat;
 import com.parnekov.sasha.fragmentincrement.MainActivity;
 import com.parnekov.sasha.fragmentincrement.R;
 
+import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_TO_FIRST_FRAGMENT;
+
 public final class NotificationsUtil {
     private static final int PENDING_INTENT_ID = 3417;
 
@@ -39,6 +41,9 @@ public final class NotificationsUtil {
 
     private static PendingIntent contentIntent(Context context, int numberFragment, String extra) {
         Intent startActivityIntent = new Intent(context, MainActivity.class);
+        if (extra == null) {
+            extra = KEY_FOR_INTENT_TO_FIRST_FRAGMENT;
+        }
         startActivityIntent.putExtra(extra, numberFragment);
         return PendingIntent.getActivity(context, PENDING_INTENT_ID, startActivityIntent, numberFragment);
     }

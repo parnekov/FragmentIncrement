@@ -1,7 +1,5 @@
 package com.parnekov.sasha.fragmentincrement.fragments;
 
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -10,48 +8,43 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.parnekov.sasha.fragmentincrement.MainActivity;
 import com.parnekov.sasha.fragmentincrement.NumberModel;
 import com.parnekov.sasha.fragmentincrement.R;
+import com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil;
 import com.parnekov.sasha.fragmentincrement.utils.NotificationsUtil;
 
+import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_TO_FIRST_FRAGMENT;
+import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_TO_SECOND_FRAGMENT;
+import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_TO_THIRD_FRAGMENT;
 
-import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_FROM_ONE_TO_TWO;
-import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_FROM_TWO_TO_ONE;
-import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_FROM_TWO_TO_THREE;
 
+public class FragmentSecond extends android.support.v4.app.Fragment {
 
-public class FragmentSecond extends Fragment {
-
-    Button mButtonPlus;
-    Button mButtonMinus;
-    TextView mTextView, mTextViewGetNot;
-    NumberModel numberModel;
+    private Button mButtonPlus;
+    private Button mButtonMinus;
+    private TextView mTextView, mTextViewGetNot;
+    private NumberModel numberModel;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         mButtonPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.putExtra(KEY_FOR_INTENT_FROM_TWO_TO_THREE, numberModel.getNumber());
-                startActivity(intent);
+                FragmentsUtil.moveTo(getActivity(), numberModel.getNumber(), KEY_FOR_INTENT_TO_THIRD_FRAGMENT);
             }
         });
 
         mButtonMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.putExtra(KEY_FOR_INTENT_FROM_TWO_TO_ONE, numberModel.getNumber());
-                startActivity(intent);
+                FragmentsUtil.moveTo(getActivity(), numberModel.getNumber(), KEY_FOR_INTENT_TO_FIRST_FRAGMENT);
             }
         });
 
         mTextViewGetNot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NotificationsUtil.showNotification(getActivity(), numberModel.getNumber(), KEY_FOR_INTENT_FROM_ONE_TO_TWO);
+                NotificationsUtil.showNotification(getActivity(), numberModel.getNumber(), KEY_FOR_INTENT_TO_SECOND_FRAGMENT);
             }
         });
     }

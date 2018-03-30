@@ -1,6 +1,5 @@
 package com.parnekov.sasha.fragmentincrement.fragments;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,11 +14,11 @@ import com.parnekov.sasha.fragmentincrement.NumberModel;
 import com.parnekov.sasha.fragmentincrement.R;
 import com.parnekov.sasha.fragmentincrement.utils.NotificationsUtil;
 
-import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_FROM_THREE_TO_TWO;
-import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_FROM_TWO_TO_THREE;
+import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_TO_SECOND_FRAGMENT;
+import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_TO_THIRD_FRAGMENT;
 
 
-public class FragmentThird extends Fragment {
+public class FragmentThird extends android.support.v4.app.Fragment {
     Button mButtonPlus, mButtonMinus;
     TextView mTextView, mTextViewGetNot;
     NumberModel numberModel;
@@ -30,7 +29,7 @@ public class FragmentThird extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.putExtra(KEY_FOR_INTENT_FROM_THREE_TO_TWO, numberModel.getNumber());
+                intent.putExtra(KEY_FOR_INTENT_TO_SECOND_FRAGMENT, numberModel.getNumber());
                 startActivity(intent);
             }
         });
@@ -38,7 +37,7 @@ public class FragmentThird extends Fragment {
         mTextViewGetNot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NotificationsUtil.showNotification(getActivity(), numberModel.getNumber(), KEY_FOR_INTENT_FROM_TWO_TO_THREE);
+                NotificationsUtil.showNotification(getActivity(), numberModel.getNumber(), KEY_FOR_INTENT_TO_THIRD_FRAGMENT);
             }
         });
     }

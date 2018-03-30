@@ -1,8 +1,6 @@
 package com.parnekov.sasha.fragmentincrement.fragments;
 
 
-import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,16 +9,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.parnekov.sasha.fragmentincrement.MainActivity;
 import com.parnekov.sasha.fragmentincrement.NumberModel;
 import com.parnekov.sasha.fragmentincrement.R;
+import com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil;
 import com.parnekov.sasha.fragmentincrement.utils.NotificationsUtil;
 
-import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_FROM_ONE_TO_TWO;
-import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_TO_ONE;
+import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_TO_FIRST_FRAGMENT;
+import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_INTENT_TO_SECOND_FRAGMENT;
 
 
-public class FragmentFirst extends Fragment {
+public class FragmentFirst extends android.support.v4.app.Fragment {
     Button mButtonAdd;
     Button mButtonSubtract;
     TextView mTextViewNumber, mTextViewGetNotification;
@@ -32,16 +30,14 @@ public class FragmentFirst extends Fragment {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                intent.putExtra(KEY_FOR_INTENT_FROM_ONE_TO_TWO, numberModel.getNumber());
-                startActivity(intent);
+                FragmentsUtil.moveTo(getActivity(), numberModel.getNumber(), KEY_FOR_INTENT_TO_SECOND_FRAGMENT);
             }
         });
 
         mTextViewGetNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NotificationsUtil.showNotification(getActivity(), numberModel.getNumber(), KEY_FOR_INTENT_TO_ONE);
+                NotificationsUtil.showNotification(getActivity(), numberModel.getNumber(), KEY_FOR_INTENT_TO_FIRST_FRAGMENT);
             }
         });
     }
