@@ -19,8 +19,7 @@ import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_I
 
 
 public class FragmentFirst extends android.support.v4.app.Fragment {
-    Button mButtonAdd;
-    Button mButtonSubtract;
+    Button mButtonAdd, mButtonSubtract;
     TextView mTextViewNumber, mTextViewGetNotification;
     NumberModel numberModel;
 

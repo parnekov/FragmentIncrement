@@ -22,7 +22,7 @@ public final class FragmentsUtil {
     }
 
     public static void getFragments(Intent intent, AppCompatActivity activity) {
-        if (intent.getFlags() == 0 || intent.getExtras() == null || intent.hasExtra(KEY_FOR_INTENT_TO_FIRST_FRAGMENT)) {
+        if (intent.getExtras() == null || intent.hasExtra(KEY_FOR_INTENT_TO_FIRST_FRAGMENT)) {
             getFragment(activity, new FragmentFirst());
         }
 

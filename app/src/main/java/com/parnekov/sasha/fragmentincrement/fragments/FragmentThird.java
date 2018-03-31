@@ -19,13 +19,13 @@ import static com.parnekov.sasha.fragmentincrement.utils.FragmentsUtil.KEY_FOR_I
 
 
 public class FragmentThird extends android.support.v4.app.Fragment {
-    Button mButtonPlus, mButtonMinus;
-    TextView mTextView, mTextViewGetNot;
+    Button mButtonAdd, mButtonSubtract;
+    TextView mTextViewNumber, mTextViewGetNotification;
     NumberModel numberModel;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        mButtonMinus.setOnClickListener(new View.OnClickListener() {
+        mButtonSubtract.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -34,7 +34,7 @@ public class FragmentThird extends android.support.v4.app.Fragment {
             }
         });
 
-        mTextViewGetNot.setOnClickListener(new View.OnClickListener() {
+        mTextViewGetNotification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 NotificationsUtil.showNotification(getActivity(), numberModel.getNumber(), KEY_FOR_INTENT_TO_THIRD_FRAGMENT);
@@ -46,17 +46,17 @@ public class FragmentThird extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_three_layout, container, false);
 
-        mButtonPlus = view.findViewById(R.id.button_add);
-        mButtonMinus = view.findViewById(R.id.button_subtract);
-        mTextView = view.findViewById(R.id.tv_number);
-        mTextViewGetNot = view.findViewById(R.id.tv_get_notification);
+        mButtonAdd = view.findViewById(R.id.button_add);
+        mButtonSubtract = view.findViewById(R.id.button_subtract);
+        mTextViewNumber = view.findViewById(R.id.tv_number);
+        mTextViewGetNotification = view.findViewById(R.id.tv_get_notification);
 
-        mButtonMinus.setVisibility(View.VISIBLE);
-        mButtonPlus.setVisibility(View.GONE);
+        mButtonSubtract.setVisibility(View.VISIBLE);
+        mButtonAdd.setVisibility(View.GONE);
 
         numberModel = new NumberModel();
         numberModel.setNumber(3);
-        mTextView.setText(String.valueOf(numberModel.getNumber()));
+        mTextViewNumber.setText(String.valueOf(numberModel.getNumber()));
         return view;
     }
 }
